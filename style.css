@@ -1,0 +1,58 @@
+#Adicionar-Empregado {
+    border-style: solid;
+    padding: 30px;
+}
+
+.button {
+    margin-left: 200px;
+    justify-content: center;
+    background-color: black;
+    border: gray 1px solid;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+tr:nth-child(even) {
+    background-color: whitesmoke;
+}
+
+#Editar-Empregado {
+    border-style: solid;
+    padding: 30px;
+}
+
+.widde {
+    width: 100%;
+}
+
+#Adicionar-Empregado .Titulo {
+    padding: 10px 0 30px 0;
+}
+
+#Editar-Empregado .Titulo {
+    padding: 10px 0 30px 0;
+}
+
+.field {
+    width: 100%;
+    text-align: left;
+    padding: 8px 0 8px 0;
+}
+
+.espaco {
+    margin: 0 10px 0 10px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+.imagem {
+    width: 50px;
+}
