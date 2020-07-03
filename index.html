@@ -19,15 +19,11 @@
 
                 <tr>
                     <th>ID:</th>
-                    <th>NOME:</th>
                     <th>CATEGORIA:</th>
-                    <th>PREÇO:</th>
-                    <th>QUANTIDADE:</th>
-                    <th>AÇÕES:</th>
                 </tr>
 
             </thead>
-            <tbody id="para-teste">
+            <tbody id="tabela-categoria">
                 <tr>
                     <th>Fazer método para listar todas as categorias semelhante ao método de listar todos os produtos
                     </th>
@@ -88,7 +84,7 @@
 
         <div id="Editar-Empregado">
             <div class="Titulo">
-                <h2>Editando Empregado</h2>
+                <h2>Editando Produto</h2>
             </div>
             <div class="row field">
                 <div class="col-3">
@@ -100,7 +96,7 @@
             </div>
             <div class="row field">
                 <div class="col-3">
-                    <label>Salário: </label>
+                    <label>Categoria: </label>
                 </div>
                 <div class="col-9">
                     <input class="widde" id="editSalario" type="text">
@@ -108,7 +104,7 @@
             </div>
             <div class="row field">
                 <div class="col-3">
-                    <label>Idade: </label>
+                    <label>Preço: </label>
                 </div>
                 <div class="col-9">
                     <input class="widde" id="editIdade" type="number">
@@ -116,7 +112,7 @@
             </div>
             <div class="row field">
                 <div class="col-3">
-                    <label>Avatar: </label>
+                    <label>Quantidade: </label>
                 </div>
                 <div class="col-9">
                     <input class="widde" id="editAvatar" type="text">
@@ -158,8 +154,34 @@
 
     <script>
 
-        function atualizarTabela() {
+        function atualizarCategoria() {
+            document.getElementById("Editar-Empregado").style.display = "none";
+            var tBody = document.getElementById("tabela-categoria");
+            var table = " ";
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        var objetoRetornado = JSON.parse(this.responseText);
+                        for (var i = 0; i < objetoRetornado.length; i++) {
+                            table = table +
+                                "<tr><td>" + objetoRetornado[i].id + "</td><td>" +
+                                objetoRetornado[i].categoria + "</td>" /* +
+                                "<label onclick='excluicategoria(" + objetoRetornado[i].id + "," + objetoRetornado[i].categoria + ")'>Excluir</label> </td> " */ + "</tr>";
+                        }
 
+
+                        tBody.innerHTML = table;
+                    }
+                }
+            };
+            xhttp.open("GET", "https://private-244cba-produtos10.apiary-mock.com/categorias", true);
+            xhttp.send();
+
+        }
+        atualizarCategoria();
+
+        function atualizarTabela() {
             document.getElementById("Editar-Empregado").style.display = "none";
             var tBody = document.getElementById("conteudoTabela");
             var table = " ";
@@ -200,7 +222,12 @@
         atualizarTabela();
 
 
-        function changeToEdit(id, nome, tipo, preco, qtd) {           
+
+        function excluiCategoria(id, categoria) {
+        }
+
+
+        function changeToEdit(id, nome, tipo, preco, qtd) {
 
             document.getElementById("Editar-Empregado").style.display = "block";
             document.getElementById("Adicionar-Empregado").style.display = "none";
@@ -213,12 +240,11 @@
         }
 
         function addEmpregado() {
-            // Tá dando warning (fodace)
             var nome = document.getElementById('addNome').value;
             var salario = document.getElementById('addSalario').value;
             var idade = document.getElementById('addIdade').value;
             var avatar = document.getElementById('addAvatar').value;
-            
+
 
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
@@ -290,12 +316,9 @@
                     if (this.readyState == 4) {
                         if (this.status == 200) {
                             var objetoRetornado = JSON.parse(this.responseText);
-                            if (objetoRetornado.status == "success") {
-                                alert("Empregado excluído com sucesso.");
-                                atualizarTabela();
-                            } else {
-                                alert("Ocorreu um erro, tente novamente");
-                            }
+                            console.log("Aqui" + objetoRetornado);
+                            alert("Produto " + nome + " excluído com sucesso.");
+                            atualizarTabela();
                         }
                     }
                 };
@@ -309,7 +332,7 @@
 
 
 
-        function editarEmpregado(id) {            
+        function editarEmpregado(id) {
             var nome = document.getElementById("editNome").value;
             var salario = document.getElementById("editSalario").value;
             var idade = document.getElementById("editIdade").value;
