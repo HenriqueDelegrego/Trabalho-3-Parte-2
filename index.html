@@ -207,7 +207,7 @@
 
 
 
-                                "<label style = 'cursor: pointer; color: blue;' onclick=excluiEmpregado('" + objetoRetornado[i].id + "','" + objetoRetornado[i].nome + "')>Excluir</label>" + "</td></tr>";
+                                "<label style = 'cursor: pointer; color: blue;' onclick = excluiEmpregado('" + objetoRetornado[i].id + "','" + objetoRetornado[i].nome + "')>Excluir</label>" + "</td></tr>";
                         }
                         tBody.innerHTML = table;
                     }
@@ -299,16 +299,6 @@
 
 
         function excluiEmpregado(id, nome) {
-            // Só falta saporra
-            // Só falta saporra
-            // Só falta saporra
-            // Só falta saporra
-            // Só falta saporra
-            // Só falta saporra
-            // Só falta saporra
-            // Só falta saporra
-            // Só falta saporra
-            // Só falta saporra
             var confirmado = confirm("Deseja excluir: " + nome);
             if (confirmado == true) {
                 var xhttp = new XMLHttpRequest();
@@ -316,13 +306,12 @@
                     if (this.readyState == 4) {
                         if (this.status == 200) {
                             var objetoRetornado = JSON.parse(this.responseText);
-                            console.log("Aqui" + objetoRetornado);
-                            alert("Produto " + nome + " excluído com sucesso.");
+                            alert(nome + " excluído com sucesso");
                             atualizarTabela();
                         }
                     }
                 };
-                xhttp.open("DELETE", "https://private-244cba-produtos10.apiary-mock.com/produtos/" + id, true);
+                xhttp.open("DELETE", "https://private-7ce50-henriquedelegrego.apiary-mock.com/pets/" + id, true);
                 xhttp.setRequestHeader('Content-type', 'application/json');
                 xhttp.send();
 
@@ -366,7 +355,6 @@
         }
 
     </script>
-
 
 
 
